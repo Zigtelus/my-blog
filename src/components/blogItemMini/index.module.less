@@ -1,0 +1,36 @@
+.blogItemMini {
+
+  text-decoration: none;
+  color: black;
+  background-color: yellow;
+  background-color: rgb(30, 106, 182);
+  transition: 0.8s;
+  height: 100px;
+
+  &:hover {
+    padding: 10px;
+    animation: blogItemMini 0.3s;
+  }
+
+  @keyframes blogItemMini {
+    0% {
+      transform: translateY(15px);
+    }
+
+    15% {
+      transform: translateY(-15px);
+    }
+
+    30% {
+      transform: translateY(15px);
+    }
+
+    60% {
+      transform: translateY(-15px);
+    }
+
+    90% {
+      transform: translateY(15px);
+    }
+  }
+}
