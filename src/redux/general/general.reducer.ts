@@ -2,10 +2,11 @@ import { Action, InitialState } from "./general.types";
 
 const initialState: InitialState = {
   popup: {
-    isState: true,
+    isState: true, //state of popup
     component: null,
-    stylePopup: undefined,
-    stylePopupBody: undefined,
+    stylePopup: undefined, //style for background of popup
+    stylePopupBody: undefined, //style for body of popup
+    timer: 300, //timer to understand when isState change to false
   },
 };
 
@@ -30,6 +31,11 @@ const reducer = (state = initialState, action: Action) => {
       return {
         ...state,
         popup: { ...state.popup, stylePopupBody: action.payload }
+      }
+    case 'POPUP_TIMER':
+      return {
+        ...state,
+        popup: { ...state.popup, timer: action.payload }
       }
     default:
       return state
