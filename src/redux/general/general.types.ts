@@ -15,6 +15,7 @@ type Popup = {
   stylePopupBody: {
     [name: string]: string;
   } | undefined;
+  timer: number;
 };
 
 // get a list of key types
