@@ -1,18 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import general from "../../redux/general/general.reducer";
-import { POPUP_CHANGE, POPUP_STYLES_POPUP, POPUP_STYLES_POPUPBODY, POPUP_TIMER } from "../../redux/general/general.action";
+import s from "./index.module.less";
+import general from "../../../redux/general/general.reducer";
+import { POPUP_CHANGE, POPUP_STYLES_POPUP, POPUP_STYLES_POPUPBODY, POPUP_TIMER } from "../../../redux/general/general.action";
 
 
-const { isState, stylePopup, component, timer } = general.initialState.popup;
+const { isState, stylesPopupBg, timer } = general.initialState.popup;
 type IsPopup = typeof isState;
-type Styles = typeof stylePopup;
-type ComponentType = typeof component;
+type Styles = typeof stylesPopupBg;
 type Timer = typeof timer;
 
 type NewStyles = Exclude<Styles, null>;
 
 interface Props {
+
+  styles: Styles;
 
   //mapDispatchToProps
   chageIsPopup: (isPopup: IsPopup) => void;
@@ -21,7 +23,7 @@ interface Props {
   changeTimer: (timer: Timer) => void;
 }
 
-class PopupButton extends React.Component<Props> {
+class BtnClosePopup extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
@@ -29,20 +31,18 @@ class PopupButton extends React.Component<Props> {
   }
 
   handeClick() {
-    const { changeStylePopupBody, changeTimer } = this.props
+    const { changeStylePopupBody, changeTimer, styles } = this.props
 
-    changeStylePopupBody({ "animation": "0.3s popup_UnMount" });
-    changeTimer(300)
+    changeStylePopupBody(styles);
   }
 
   render() {
     const { handeClick } = this;
 
     return <button
-      style={{ 'width': '100%', 'height': '100%' }}
+      className={s.btn}
       onClick={handeClick}
     >
-      close
     </button>
   }
 }
@@ -54,4 +54,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   changeTimer: (timer: Timer) => dispatch(POPUP_TIMER(timer))
 })
 
-export default connect(null, mapDispatchToProps)(PopupButton);
+export default connect(null, mapDispatchToProps)(BtnClosePopup);

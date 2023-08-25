@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, Reducer, ReducerAction } from "react";
 
 //these styles are only for "initialState" in "Reducer"
 
@@ -9,7 +9,7 @@ export type InitialState = {
 type Popup = {
   isState: boolean;
   component: ComponentType | null;
-  stylePopup: {
+  stylesPopupBg: {
     [name: string]: string;
   } | undefined;
   stylePopupBody: {
@@ -22,5 +22,5 @@ type Popup = {
 type PopupKeys = keyof Popup;
 export type Action = {
   payload: Popup[PopupKeys];
-  type: string;
+  type: any;
 };

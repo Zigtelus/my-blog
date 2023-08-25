@@ -1,16 +1,16 @@
-import { Action, InitialState } from "./general.types";
+import { InitialState } from "./general.types";
 
 const initialState: InitialState = {
   popup: {
-    isState: true, //state of popup
+    isState: false, //state of popup
     component: null,
-    stylePopup: undefined, //style for background of popup
+    stylesPopupBg: undefined, //style for background of popup
     stylePopupBody: undefined, //style for body of popup
-    timer: 300, //timer to understand when isState change to false
+    timer: 1000, //timer to understand when isState change to false
   },
 };
 
-const reducer = (state = initialState, action: Action) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'POPUP_CHANGE':
       return {
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action: Action) => {
     case 'POPUP_STYLES_POPUP':
       return {
         ...state,
-        popup: { ...state.popup, stylePopup: action.payload }
+        popup: { ...state.popup, stylesPopupBg: action.payload }
       }
     case 'POPUP_STYLES_POPUPBODY':
       return {

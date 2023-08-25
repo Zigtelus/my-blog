@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 
 import Counter from "../components/counter";
 import Name from "../components/name";
@@ -9,11 +8,10 @@ import Main from "./main";
 import Header from "./main/header";
 import { Routes } from "../routes";
 import Blog from "./blog";
-import { POPUP_CONTENT } from "../redux/general/general.action";
 import Popup from "./popup";
-import initialState from "../redux/general/general.reducer"
+import BtnOpenPopup from "../HOCs/popup.hoc/BtnOpenPopup";
 
-type ComponentType = typeof initialState.initialState.popup.component;
+
 
 class PopupBody extends React.Component {
 
@@ -26,15 +24,11 @@ class PopupBody extends React.Component {
 
 
 interface Props {
-
-  //mapDispatchToProps
-  POPUP_CONTENT: (component: ComponentType) => void;
 }
 
 class App extends React.Component<Props>{
 
   render() {
-    const { POPUP_CONTENT } = this.props;
 
     return <div>
       <Header />
@@ -55,18 +49,18 @@ class App extends React.Component<Props>{
       </Main>
 
       <div
-        onClick={() => {
-          POPUP_CONTENT(PopupBody)
-        }}
-      >footer</div>
+        style={{ "position": "relative" }}
+      >
+        <BtnOpenPopup
+          component={PopupBody}
+          styles={{ "animation": "1s popup__body_willMount" }}
+          timer={1000}
+        />
+        footer</div>
 
       <Popup />
     </div>
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  POPUP_CONTENT: (component: ComponentType) => dispatch(POPUP_CONTENT(component))
-})
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
