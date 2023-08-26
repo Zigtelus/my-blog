@@ -14,7 +14,8 @@ module.exports = {
   devtool: 'eval-source-map', // показывает ошибки в компонентах, а не в компилированном коде
   output: {
     path: path.resolve(__dirname, 'dist'), // куда сохраняется файл при сборке
-    filename: '[name].[hash].js' // гарантирует уникальное название файла при сборке, что бы избежать хэширования
+    // filename: '[name].[hash].js' // гарантирует уникальное название файла при сборке, что бы избежать хэширования
+    filename: 'bundle.js'
   },
   devServer: {
     port: 8091,

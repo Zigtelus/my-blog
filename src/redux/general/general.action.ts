@@ -1,7 +1,8 @@
 import PopupTypes from "./general.reducer";
 
+
 //get objects to convert to types
-const { isState, component, stylePopup, stylePopupBody } = PopupTypes.initialState.popup;
+const { isState, component, stylesPopupBg, stylePopupBody, timer } = PopupTypes.initialState.popup;
 
 
 type isPopupType = typeof isState;
@@ -16,7 +17,7 @@ const POPUP_CONTENT = (component: ComponentType) => ({
   type: 'POPUP_CONTENT'
 });
 
-type StylesType = typeof stylePopup;
+type StylesType = typeof stylesPopupBg;
 const POPUP_STYLES_POPUP = (component: StylesType) => ({
   payload: component,
   type: 'POPUP_STYLES_POPUP'
@@ -28,4 +29,10 @@ const POPUP_STYLES_POPUPBODY = (component: StylePopupBody) => ({
   type: 'POPUP_STYLES_POPUPBODY'
 });
 
-export { POPUP_CHANGE, POPUP_CONTENT, POPUP_STYLES_POPUP, POPUP_STYLES_POPUPBODY };
+type TimerPopup = typeof timer;
+const POPUP_TIMER = (component: TimerPopup) => ({
+  payload: component,
+  type: 'POPUP_TIMER'
+});
+
+export { POPUP_CHANGE, POPUP_CONTENT, POPUP_STYLES_POPUP, POPUP_STYLES_POPUPBODY, POPUP_TIMER };

@@ -1,27 +1,28 @@
 import React from "react";
 import "./index.less";
 import { connect } from "react-redux";
-import { POPUP_CHANGE, POPUP_STYLES_POPUP, POPUP_STYLES_POPUPBODY } from "../../redux/general/general.action";
+
+import { POPUP_CHANGE } from "../../redux/general/general.action";
 import { RootState } from "../../redux";
 import general from "../../redux/general/general.reducer";
+import PopupButton from "./BtnClosePopup";
+import BtnClosePopup from "./BtnClosePopup";
 
 //types for mapDispatchToProps
-const { isState, stylePopup, component } = general.initialState.popup;
+const { isState, stylesPopupBg, component, timer } = general.initialState.popup;
 type IsPopup = typeof isState;
-type Styles = typeof stylePopup;
+type Styles = typeof stylesPopupBg;
 type ComponentType = typeof component;
-
-type NewStyles = Exclude<Styles, null>;
+type Timer = typeof timer;
 
 interface Props {
   PopupBody: ComponentType;
-  stylesForPopup: Styles; //remove "null" from Styles
-  stylesForPopupBody?: Styles;
+  stylesPopupBg: Styles; //remove "null" from Styles
+  stylesPopupBody?: Styles;
+  timer: Timer;
 
   //mapDispatchToProps
-  chageIsPopup: (isPopup: IsPopup) => void;
-  changeStylePopup: (style: NewStyles) => void;
-  changeStylePopupBody: (style: NewStyles) => void;
+  POPUP_CHANGE: (isPopup: IsPopup) => void;
 }
 
 interface State {
@@ -30,34 +31,48 @@ interface State {
 
 class PopupHoc extends React.Component<Props, State> {
 
-  render() {
-    const { PopupBody, stylesForPopup, stylesForPopupBody } = this.props;
-    const { chageIsPopup, changeStylePopup, changeStylePopupBody } = this.props;
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
+    if (prevProps !== this.props) {
 
-    return <div className="popup" style={stylesForPopup}>
-      <div className="popup__body" style={stylesForPopupBody}>
+      const { timer } = this.props;
+      const { POPUP_CHANGE } = this.props;
+      console.log(timer)
+      setTimeout(() => POPUP_CHANGE(false), timer);
+    }
+  }
+
+  render() {
+    const { PopupBody, stylesPopupBg, stylesPopupBody } = this.props;
+
+    return <div className="popup_bg" style={stylesPopupBg}>
+      <BtnClosePopup styles={{ "animation": "1s popup_UnMount" }} />
+      <div className="popup__body" style={stylesPopupBody}>
         <span
           className="popupClose"
-          // onClick={() => chageIsPopup(false)}
-          // onClick={() => changeStylePopup({ "animation": "0.3s popup_UnMount" })}
-          onClick={() => changeStylePopupBody({ "animation": "0.3s popup_UnMount" })}
-        ></span>
+        >
+          <BtnClosePopup
+            styles={{ "animation": "1s popup_UnMount" }}
+          />
+        </span>
         {!!PopupBody && <PopupBody />}
       </div>
     </div>
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
-  PopupBody: state.general.popup.component,
-  stylesForPopup: state.general.popup.stylePopup,
-  stylesForPopupBody: state.general.popup.stylePopupBody
-})
+const mapStateToProps = (state: RootState) => {
+  const { component, stylesPopupBg, stylePopupBody, timer } = state.general.popup;
+
+  return {
+    PopupBody: component,
+    stylesPopupBg: stylesPopupBg,
+    stylesPopupBody: stylePopupBody,
+    timer: timer,
+  }
+}
 
 const mapDispatchToProps = (dispatch: any) => ({
-  chageIsPopup: (isPopup: IsPopup) => dispatch(POPUP_CHANGE(isPopup)),
-  changeStylePopup: (styles: Styles) => dispatch(POPUP_STYLES_POPUP(styles)),
-  changeStylePopupBody: (styles: Styles) => dispatch(POPUP_STYLES_POPUPBODY(styles))
+  POPUP_CHANGE: (isPopup: IsPopup) => dispatch(POPUP_CHANGE(isPopup)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopupHoc);
