@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, RouteComponentProps, Switch, withRouter } from "react-router-dom";
 
 import Counter from "../components/counter";
 import Name from "../components/name";
@@ -23,7 +23,7 @@ class PopupBody extends React.Component {
 }
 
 
-interface Props {
+interface Props extends RouteComponentProps {
 }
 
 class App extends React.Component<Props>{
@@ -35,7 +35,13 @@ class App extends React.Component<Props>{
 
       <Main>
         <Switch>
-          <Route path={Routes.blog} component={Blog} />
+          <Route exact path={`${Routes.home}`} render={() => <div>{Routes.home}</div>} />
+          <Route exact path={Routes.blog} component={Blog} />
+          <Route path={`${Routes.blog}/:id`} render={() =>
+            <div>
+              11
+            </div>
+          } />
           <Route path={'/first'} component={Counter} />
           <Route path={'/second'} render={() =>
             <div>
@@ -45,6 +51,8 @@ class App extends React.Component<Props>{
               </React.Fragment>
             </div>}
           />
+
+          <Route path="*" render={() => <div>404</div>} />
         </Switch>
       </Main>
 
@@ -63,4 +71,4 @@ class App extends React.Component<Props>{
   }
 }
 
-export default App;
+export default withRouter(App);
