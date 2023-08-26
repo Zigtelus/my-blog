@@ -23,8 +23,7 @@ class PopupBody extends React.Component {
 }
 
 
-interface Props extends RouteComponentProps {
-}
+interface Props extends RouteComponentProps { }
 
 class App extends React.Component<Props>{
 
