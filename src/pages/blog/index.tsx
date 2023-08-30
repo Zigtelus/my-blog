@@ -5,43 +5,43 @@ import BlogItemMini from "../../components/blogItemMini";
 
 const data = [
   {
-    title: "title",
+    title: "title1",
     description: "description"
   },
   {
-    title: "title",
+    title: "title2",
     description: "description"
   },
   {
-    title: "title",
+    title: "title3",
     description: "description"
   },
   {
-    title: "title",
+    title: "title4",
     description: "description"
   },
   {
-    title: "title",
+    title: "title5",
     description: "description"
   },
   {
-    title: "title",
+    title: "title6",
     description: "description"
   },
   {
-    title: "title",
+    title: "title7",
     description: "description"
   },
   {
-    title: "title",
+    title: "title8",
     description: "description"
   },
   {
-    title: "title",
+    title: "title9",
     description: "description"
   },
   {
-    title: "title",
+    title: "title10",
     description: "description"
   },
   {

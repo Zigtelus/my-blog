@@ -2,11 +2,7 @@ import { ComponentType, Reducer, ReducerAction } from "react";
 
 //these styles are only for "initialState" in "Reducer"
 
-export type InitialState = {
-  popup: Popup
-};
-
-type Popup = {
+interface Popup {
   isState: boolean;
   component: ComponentType | null;
   stylesPopupBg: {
@@ -18,9 +14,13 @@ type Popup = {
   timer: number;
 };
 
+export interface InitialState {
+  popup: Popup
+};
+
 // get a list of key types
 type PopupKeys = keyof Popup;
-export type Action = {
+export interface Action {
   payload: Popup[PopupKeys];
   type: any;
 };

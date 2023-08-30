@@ -10,6 +10,7 @@ import { Routes } from "../routes";
 import Blog from "./blog";
 import Popup from "./popup";
 import BtnOpenPopup from "../HOCs/popup.hoc/BtnOpenPopup";
+import BlogPage from "../components/blogPage";
 
 
 
@@ -36,11 +37,7 @@ class App extends React.Component<Props>{
         <Switch>
           <Route exact path={`${Routes.home}`} render={() => <div>{Routes.home}</div>} />
           <Route exact path={Routes.blog} component={Blog} />
-          <Route path={`${Routes.blog}/:id`} render={() =>
-            <div>
-              11
-            </div>
-          } />
+          <Route path={`${Routes.blog}/:id`} component={BlogPage} />
           <Route path={'/first'} component={Counter} />
           <Route path={'/second'} render={() =>
             <div>
