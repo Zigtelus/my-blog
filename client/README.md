@@ -11,6 +11,8 @@
 - TypeScript <br>
 - Less <br>
 
+- dompurify - данная технология необходима для чтения разметки из текста <br> 
+
 # ЗАПУСК ПРОЕКТА через Docker <br>
 1. создание образа:
 - docker build -t test-webpack . <br>

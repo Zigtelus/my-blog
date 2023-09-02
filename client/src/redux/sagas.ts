@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { putData } from './rikmorty/rikmorty.action.ts';
+import { putData } from './rikmorty/rikmorty.action';
 
 
 function fetchData() {

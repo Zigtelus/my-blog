@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import General from './general/general.reducer.ts';
-import Blog from './blog/blog.reducer.ts';
-import ReducerCount, { AppState } from './counter/counter.reducer.ts';
-import ReducerStringer, { AppStateString } from './name/name.reducer.ts';
-import ReducerRikmorty, { initialStateRikMorty } from './rikmorty/rikmorty.reducer.ts';
+import General from './general/general.reducer';
+import Blog from './blog/blog.reducer';
+import ReducerCount, { AppState } from './counter/counter.reducer';
+import ReducerStringer, { AppStateString } from './name/name.reducer';
+import ReducerRikmorty, { initialStateRikMorty } from './rikmorty/rikmorty.reducer';
 
 export const rootReducer = combineReducers({
   general: General.reducer,

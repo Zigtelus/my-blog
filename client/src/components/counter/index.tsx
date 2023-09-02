@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { RootState } from "../../redux";
-import { counterAction } from "../../redux/counter/counter.action.ts";
+import { counterAction } from "../../redux/counter/counter.action";
 
 
 type Props = {

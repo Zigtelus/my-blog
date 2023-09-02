@@ -11,17 +11,9 @@ import Blog from "./blog";
 import Popup from "./popup";
 import BtnOpenPopup from "../HOCs/popup.hoc/BtnOpenPopup";
 import BlogPage from "../components/blogPage";
+import Footer from "./main/footer";
 
 
-
-class PopupBody extends React.Component {
-
-  render() {
-    return <div>
-      YES
-    </div>
-  }
-}
 
 
 interface Props extends RouteComponentProps { }
@@ -52,15 +44,8 @@ class App extends React.Component<Props>{
         </Switch>
       </Main>
 
-      <div
-        style={{ "position": "relative" }}
-      >
-        <BtnOpenPopup
-          component={PopupBody}
-          styles={{ "animation": "1s popup__body_willMount" }}
-          timer={1000}
-        />
-        footer</div>
+
+      <Footer />
 
       <Popup />
     </div>

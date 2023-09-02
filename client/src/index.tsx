@@ -6,7 +6,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
-import { watchLoadData } from './redux/sagas.ts';
+import { watchLoadData } from './redux/sagas';
 import { rootReducer } from './redux';
 import App from './pages';
 import logger from 'redux-logger';
