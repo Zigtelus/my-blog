@@ -1,4 +1,7 @@
-export interface Article {
+export type Article = {
+  id: number,
   title: string,
-  description: string
-}
+  description: string,
+  cover: string,
+  html: string
+}[]
